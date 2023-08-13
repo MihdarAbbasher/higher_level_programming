@@ -76,19 +76,12 @@ listint_t *cp_list(listint_t **head)
 int is_palindrome(listint_t **head)
 {
 	listint_t *list_copy, *curr;
-	int len_half, len, i;
+	int len_half, i;
 
 	curr = *head;
-	len =  listint_len(*head);
-	len_half =  len / 2;
-
-	for (i = 0; i < len_half; i++)
-		curr = curr->next;
-	if (len % 2 == 1)
-		curr = curr->next;
-	list_copy = cp_list(&curr);
+	list_copy = cp_list(head);
 	reverse_listint(&list_copy);
-	
+	len_half =  listint_len(*head) / 2;
 	for (i = 0; i < len_half; i++)
 	{
 		if (curr->n != list_copy->n)
