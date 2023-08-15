@@ -11,6 +11,7 @@
 listint_t *get_node(listint_t **head, int idx)
 {
 	listint_t *tmp;
+	int i;
 
 	if (*head == NULL)
 		return (NULL);
@@ -22,7 +23,7 @@ listint_t *get_node(listint_t **head, int idx)
 		tmp = tmp->next;
 		i++;
 	}
-	return (*tmp);
+	return (tmp);
 }
 
 /**
@@ -55,7 +56,7 @@ size_t listint_len(const listint_t *h)
 int is_palindrome(listint_t **head)
 {
 	listint_t *rev_curr, *curr;
-	int len_half, i;
+	int len_half, i, lenn;
 
 	
 	lenn =  listint_len(*head);
@@ -64,7 +65,7 @@ int is_palindrome(listint_t **head)
 	rev_curr = get_node(head, lenn - 1);
 	for (i = 0; i < len_half; i++)
 	{
-		rev_curr = get_node(head, len - 1 - i);
+		rev_curr = get_node(head, lenn - 1 - i);
 		if (curr->n != rev_curr->n)
 			return (0);
 		curr = curr->next;
