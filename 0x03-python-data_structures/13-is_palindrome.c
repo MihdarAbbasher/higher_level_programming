@@ -1,31 +1,4 @@
 #include "lists.h"
-
-/**
- * get_node - get node at index idx
- * @head: the head of list
- * @idx: the head of list
- * Description: this function reverse list
- * section header: the header of this function is lists.h)*
- * Return: reversed list
- */
-listint_t *get_node(listint_t **head, int idx)
-{
-	listint_t *tmp;
-	int i;
-
-	if (*head == NULL)
-		return (NULL);
-
-	tmp = *head;
-	i = 0;
-	while (i < idx)
-	{
-		tmp = tmp->next;
-		i++;
-	}
-	return (tmp);
-}
-
 /**
  * listint_len - count the number of elements
 (* a blank line
@@ -55,20 +28,29 @@ size_t listint_len(const listint_t *h)
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *rev_curr, *curr;
-	int len_half, i, lenn;
-
+	listint_t *curr;
+	int i, lenn;
+	int **ptr;
 	
 	lenn =  listint_len(*head);
-	len_half = lenn / 2;
 	curr = *head;
-	rev_curr = get_node(head, lenn - 1);
-	for (i = 0; i < len_half; i++)
+	ptr = malloc(sizeof(int *) * lenn);
+	if (ptr == NULL)
+		return (-1);
+	
+	for (i = 0; i < lenn; i++)
 	{
-		rev_curr = get_node(head, lenn - 1 - i);
-		if (curr->n != rev_curr->n)
-			return (0);
+		ptr[i] = &curr->n;
 		curr = curr->next;
 	}
+	for (i = 0; i < lenn / 2; i++)
+	{
+		if (*ptr[i] != *ptr[lenn - 1 - i])
+		{
+			free(ptr);
+			return (0);
+		}
+	}
+	free(ptr);
 	return (1);
 }
