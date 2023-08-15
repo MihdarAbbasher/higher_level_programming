@@ -1,29 +1,28 @@
 #include "lists.h"
 
 /**
- * reverse_listint - thsi reverse a list
+ * get_node - get node at index idx
  * @head: the head of list
+ * @idx: the head of list
  * Description: this function reverse list
  * section header: the header of this function is lists.h)*
  * Return: reversed list
  */
-listint_t *reverse_listint(listint_t **head)
+listint_t *get_node(listint_t **head, int idx)
 {
-	listint_t *tmp, *actual;
+	listint_t *tmp;
 
 	if (*head == NULL)
 		return (NULL);
 
-	actual = *head;
-
-	while (actual->next)
+	tmp = *head;
+	i = 0;
+	while (i < idx)
 	{
-		tmp = actual->next;
-		actual->next = tmp->next;
-		tmp->next = *head;
-		*head = tmp;
+		tmp = tmp->next;
+		i++;
 	}
-	return (*head);
+	return (*tmp);
 }
 
 /**
@@ -47,26 +46,6 @@ size_t listint_len(const listint_t *h)
 
 
 /**
- * cp_list - copy list
- * @head: pointer to head of list
- * Return: ptr to new list
- */
-listint_t *cp_list(listint_t **head)
-{
-	listint_t *my_list, *current;
-
-	my_list = malloc(sizeof(listint_t) * listint_len(*head));
-	current = *head;
-	while (current != NULL)
-	{
-		add_nodeint_end(&my_list, current->n);
-		current = current->next;
-	}
-	return (my_list);
-}
-
-
-/**
  * is_palindrome - checks if a singly linked list
  * is a palindrome
  * @head: pointer to head of list
@@ -75,22 +54,20 @@ listint_t *cp_list(listint_t **head)
  */
 int is_palindrome(listint_t **head)
 {
-	listint_t *list_copy, *curr;
+	listint_t *rev_curr, *curr;
 	int len_half, i;
 
+	
+	lenn =  listint_len(*head);
+	len_half = lenn / 2;
 	curr = *head;
-	list_copy = cp_list(head);
-	reverse_listint(&list_copy);
-	len_half =  listint_len(*head) / 2;
+	rev_curr = get_node(head, lenn - 1);
 	for (i = 0; i < len_half; i++)
 	{
-		if (curr->n != list_copy->n)
-		{
-			free(list_copy);
+		rev_curr = get_node(head, len - 1 - i);
+		if (curr->n != rev_curr->n)
 			return (0);
-		}
 		curr = curr->next;
-		list_copy = list_copy->next;
 	}
 	return (1);
 }
