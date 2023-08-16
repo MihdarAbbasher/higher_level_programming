@@ -1,9 +1,7 @@
 #!/usr/bin/python3
-search_replace = __import__('1-search_replace').search_replace
+only_diff_elements = __import__('4-only_diff_elements').only_diff_elements
 
-my_list = [1, 2, 3, 4, 5, 4, 2, 1, 1, 4, 89]
-new_list = search_replace(my_list, 2, 89)
-
-print(new_list)
-print(my_list)
-
+set_1 = { "Python", "C", "Javascript" }
+set_2 = { "Bash", "C", "Ruby", "Perl" }
+od_set = only_diff_elements(set_1, set_2)
+print(sorted(list(od_set)))
