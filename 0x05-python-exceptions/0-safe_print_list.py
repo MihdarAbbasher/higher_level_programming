@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 def safe_print_list(my_list=[], x=0):
-    """ safe_print_list
+    """ safe_print_list.
+
     Args:
     list
 
@@ -17,3 +18,4 @@ def safe_print_list(my_list=[], x=0):
     except:
         print()
     return(i)
+
