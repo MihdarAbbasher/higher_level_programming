@@ -2,8 +2,7 @@
 
 def safe_print_integer(value):
     try:
-        i = int(value)
-        print("{:d}".format(int(i)))
+        print("{:d}".format(value))
         return (True)
     except:
         return (False)
