@@ -18,7 +18,7 @@ def list_division(my_list_1, my_list_2, list_length):
         try:
             res = my_list_1[i] / my_list_2[i]
             li.append(res)
-        except(ZeroDivisionError, TypeError, IndexError) as e:
+        except (ZeroDivisionError, TypeError, IndexError) as e:
             if isinstance(e, TypeError):
                 print("wrong type")
             elif (isinstance(e, ZeroDivisionError)):
