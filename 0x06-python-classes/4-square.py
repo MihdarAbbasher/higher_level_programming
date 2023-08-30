@@ -39,5 +39,6 @@ class Square:
         if (isinstance(v, int)):
             if (v < 0):
                 raise ValueError("size must be >= 0")
+            self.__size = v
         else:
             raise TypeError("size must be an integer")
