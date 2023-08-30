@@ -34,10 +34,21 @@ class Square:
     def size(self, v):
         """set size of square.
         Args:
-            v: new size
+            v: new value of size
         """
         if (isinstance(v, int)):
             if (v < 0):
                 raise ValueError("size must be >= 0")
+            self.__size = v
         else:
             raise TypeError("size must be an integer")
+
+    def my_print(self):
+        """print square with char '#'."""
+        if self.__size == 0:
+            print()
+        else:
+            for i in range(self.__size):
+                for j in range(self.__size):
+                    print("#", end="")
+                print()
